@@ -5,10 +5,19 @@ Bilingual minting page: English (main) + Japanese. Social handle: @kenseisamurai
 
 ## Status — read this first
 
-- **Smart contract: NOT deployed on BSC Mainnet yet.** There is no production
-  contract address yet. Do not use any Remix VM address as a production
-  contract address, mint address, or mainnet proof — VM addresses are local
-  only and cannot be verified on BscScan.
+- **Smart contract: DEPLOYED on BSC Mainnet on 2026-10-30.**
+  - Contract address: `0x1a92F81bFE06EbAB072743Fe61cf3c12449c6902`
+  - BscScan: https://bscscan.com/address/0x1a92F81bFE06EbAB072743Fe61cf3c12449c6902
+  - Deploy tx: `0xb88998b10680fd225e83fa44ad13e2eed1c2fdd56484a7e2c8abd0edfbe9ec4b`
+  - TransferOwnership tx: `0x24e7fc556bc97f92b154e2479f4b974a9aa9f40719b6e62ed44c9894f9b238fa`
+  - Deployer on BscScan (temporary wallet, since deleted): `0xeA61B9C30EDd9E95c9E4b3896227569D6a781456`
+  - Final owner: `0x504b36A0846Eb67F3f9Cdd5CDf074E26186d38E8`
+  - Do NOT use any Remix VM address as a production contract address,
+    mint address, or mainnet proof — VM addresses are local only and
+    cannot be verified on BscScan.
+- **Mint is still NOT OPEN:** metadata is not yet frozen on IPFS and
+  baseURI is still empty. Do not mint / announce mint until the 1,111
+  IPFS metadata files are pinned and the owner sets baseURI.
 - Deployer / owner (confirmed): `0x504b36A0846Eb67F3f9Cdd5CDf074E26186d38E8`
 - Name: Kensei — Symbol: KENSEI — Initial baseURI: empty (to be set via
   `setBaseURI` before mint opens, after the 1,111 IPFS metadata files are done)

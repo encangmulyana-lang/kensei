@@ -30,10 +30,25 @@ a{color:var(--gold)}small{color:var(--muted)}
 .card h2{border-left:4px solid var(--gold);padding-left:10px}
 @media(max-width:600px){.hero h1{font-size:42px;letter-spacing:4px}.statgrid{grid-template-columns:1fr 1fr}}
 .bar{height:14px;background:#3a2f26;border-radius:999px;overflow:hidden;margin:12px 0}.bar>div{height:100%;background:var(--gold);width:0%}pre.agent{white-space:pre-wrap;word-break:break-all;background:#0d0b0a;border:1px solid #3a2f26;border-radius:10px;padding:14px;overflow:auto;font-size:13px}button.copy{background:transparent;color:var(--gold);border:1px solid var(--gold);padding:10px 16px;border-radius:999px;cursor:pointer;font-weight:700}.stepnum{color:var(--gold);font-weight:800}
+
+.livebanner{position:sticky;top:0;z-index:50;background:var(--gold);color:#111;text-align:center;font-weight:800;padding:10px 12px;letter-spacing:.5px;box-shadow:0 4px 24px rgba(212,175,55,.45)}
+@keyframes pulseGlow{0%,100%{text-shadow:0 2px 24px rgba(212,175,55,.35)}50%{text-shadow:0 2px 36px rgba(212,175,55,.85)}}
+@keyframes ctaPulse{0%,100%{box-shadow:0 0 0 0 rgba(212,175,55,.55)}50%{box-shadow:0 0 0 10px rgba(212,175,55,0)}}
+@keyframes barShimmer{0%{background-position:-200px 0}100%{background-position:200px 0}}
+@keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.hero h1{animation:pulseGlow 3s ease-in-out infinite}
+.heroimg{animation:heroFloat 5s ease-in-out infinite}
+.cta{animation:ctaPulse 2.5s ease-in-out infinite}
+button.mint{animation:ctaPulse 2.5s ease-in-out infinite;font-size:18px}
+.card{transition:transform .2s ease,box-shadow .2s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,.45)}
+.statgrid b{font-size:32px;text-shadow:0 0 18px rgba(212,175,55,.4)}
+.bar>div{background:linear-gradient(90deg,var(--gold),#f5d76e,var(--gold));background-size:200px 100%;animation:barShimmer 2s linear infinite}
+@media(max-width:600px){.hero h1{font-size:48px}.livebanner{font-size:14px}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.0/dist/ethers.umd.min.js"></script>
 </head>
-<body>
+<body><div class="livebanner">⚔️ MINT LIVE — <span id="bannerMinted">—</span> / 1,111 minted • Phase 1: 0.0002 BNB • Only 1,111 will ever exist</div>
 <header class="hero">
 <button class="lang" onclick="toggleLang()">EN / 日本語</button>
 <h1>KENSEI <span>剣聖</span></h1>
@@ -251,7 +266,7 @@ async function checkWallet(){
     const provider=new ethers.JsonRpcProvider("https://bsc-dataseed.bnbchain.org");
     const c=new ethers.Contract("0x1a92F81bFE06EbAB072743Fe61cf3c12449c6902", ["function totalMinted() view returns (uint256)","function mintPaused() view returns (bool)","function currentPrice() view returns (uint256)"], provider);
     const t=await c.totalMinted(); const paused=await c.mintPaused(); const price=await c.currentPrice();
-    const a=document.getElementById("agentMinted"); if(a) a.textContent=t.toString();
+    const a=document.getElementById("agentMinted"); if(a) a.textContent=t.toString(); const bm=document.getElementById("bannerMinted"); if(bm) bm.textContent=t.toString();
     const b=document.getElementById("agentBar"); if(b) b.style.width=(Number(t)/1111*100).toFixed(2)+"%";
     const pr=document.getElementById("agentPrice"); if(pr) pr.textContent=ethers.formatEther(price)+" BNB";
     const pa=document.getElementById("agentPaused"); if(pa) pa.textContent=paused?"Yes":"No";

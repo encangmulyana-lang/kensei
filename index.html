@@ -86,15 +86,15 @@ a{color:var(--gold)}small{color:var(--muted)}
 </ol>
 </section>
 <section class="card">
-<h2 data-en="Mint — Coming Soon" data-ja="ミント — 近日公開">Mint — Coming Soon</h2>
-<p><strong>Website launched. Mint follows after IPFS metadata is pinned and the owner sets baseURI.</strong> The Mint button below is disabled on the website for now, so no one mints before metadata is ready.</p>
+<h2 data-en="Mint — Live" data-ja="ミント — ライブ">Mint — Live</h2>
+<p><strong>Mint is now open on the website.</strong> Connect your wallet, choose a quantity (max 10 per wallet), and mint. Phase 1 price is 0.0002 BNB per token for the first 555 tokens, then 0.001 BNB, gas separate.</p>
 <div class="warn"><p data-en="Warning: the contract is deployed, but metadata is not yet on IPFS and baseURI is still empty. Minting now will create tokens without metadata until the owner sets baseURI. Mint only if you understand this." data-ja="警告：コントラクトはデプロイ済みですが、メタデータはまだIPFSになく、ベースURIも空です。今ミントすると、オーナーがベースURIを設定するまでメタデータのないトークンになります。理解した上でミントしてください。">Warning: the contract is deployed, but metadata is not yet on IPFS and baseURI is still empty. Minting now will create tokens without metadata until the owner sets baseURI. Mint only if you understand this.</p></div>
 <p><small>Contract: <a href="https://bscscan.com/address/0x1a92F81bFE06EbAB072743Fe61cf3c12449c6902">0x1a92F81bFE06EbAB072743Fe61cf3c12449c6902</a> • BSC Mainnet • Max 10 per wallet • Gas separate</small></p>
 <button class="mint" id="connectWalletBtn">Connect Wallet</button>
 <p id="mintWalletInfo"><small>Not connected. Open this page in a browser with a wallet (desktop extension or wallet app browser).</small></p>
 <label>Quantity (max 10) <input id="mintQty" type="number" min="1" max="10" value="1"></label>
 <p><strong>Mint total: <span id="mintTotal">—</span></strong> <small>(excluding gas; price follows on-chain totalMinted, Phase 1 0.0002 / Phase 2 0.001 BNB)</small></p>
-<button class="mint" id="mintBtn" disabled>Mint — Coming Soon</button>
+<button class="mint" id="mintBtn" disabled>Mint Now</button>
 <p id="mintStatus"><small></small></p>
 <p id="mintResult" style="display:none"><small></small></p>
 </section>
@@ -140,7 +140,7 @@ phase.onchange=calc;qty.oninput=calc;calc();
 </script>
 
 <script>
-const WEBSITE_MINT_OPEN = false; // Website launch only: mint opens after IPFS + baseURI
+const WEBSITE_MINT_OPEN = true; // Mint opened by owner instruction 2026-10-30: mint + activate button, before IPFS + baseURI are finished
 const KENSEI_ADDR = "0x1a92F81bFE06EbAB072743Fe61cf3c12449c6902";
 const KENSEI_ABI = ["function mint(uint256 quantity) payable","function totalMinted() view returns (uint256)","function MAX_SUPPLY() view returns (uint256)","function mintPaused() view returns (bool)"];
 let mProvider, mSigner, mContract, mAddress;
